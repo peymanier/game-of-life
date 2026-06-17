@@ -1,7 +1,6 @@
-import json
+import tomllib
 from collections import defaultdict
 from dataclasses import dataclass
-import tomllib
 from pathlib import Path
 
 ALIVE_CHAR = "♥"
@@ -57,7 +56,7 @@ class Grid:
 
         stay_alive = set()
         for cell, count in alive_neighbors_counter.items():
-            if cell in self.pattern.alive_cells and count == 2 or count == 3:
+            if cell in self.pattern.alive_cells and (count == 2 or count == 3):
                 stay_alive.add(cell)
 
         become_alive = set()
