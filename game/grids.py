@@ -24,9 +24,18 @@ class Pattern:
         return cls(name, alive_cells={(int(x), int(y)) for x, y in data})
 
 
+PATTERNS_FILENAME = Path(__file__).parent / 'patterns.toml'
+
+
+def get_pattern_names():
+    with PATTERNS_FILENAME.open('rb') as f:
+        data = tomllib.load(f)
+
+    return data.keys()
+
+
 def get_pattern(name: str):
-    filename = Path(__file__).parent / 'patterns.toml'
-    with filename.open('rb') as f:
+    with PATTERNS_FILENAME.open('rb') as f:
         data = tomllib.load(f)
 
     game_config = data[name]

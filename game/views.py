@@ -5,10 +5,10 @@ from game.grids import Grid, Pattern
 
 
 class CursesView:
-    def __init__(self, pattern: Pattern, gen=10, frame_rate=7):
+    def __init__(self, pattern: Pattern, gen=10, fps=7):
         self.pattern = pattern
         self.gen = gen
-        self.frame_rate = frame_rate
+        self.fps = fps
 
     def show(self):
         curses.wrapper(self._draw)
@@ -27,4 +27,4 @@ class CursesView:
             grid.evolve()
             screen.addstr(0, 0, grid.as_string())
             screen.refresh()
-            time.sleep(1 / self.frame_rate)
+            time.sleep(1 / self.fps)
