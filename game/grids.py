@@ -24,13 +24,13 @@ class Pattern:
         return cls(name, alive_cells={(int(x), int(y)) for x, y in data})
 
 
-def get_pattern(name):
-    filename = Path(__file__).parent / 'config.toml'
+def get_pattern(name: str):
+    filename = Path(__file__).parent / 'patterns.toml'
     with filename.open('rb') as f:
         data = tomllib.load(f)
 
-    game_config = data['game']
-    return Pattern.from_toml(game_config['name'], game_config['alive_cells'])
+    game_config = data[name]
+    return Pattern.from_toml(name, game_config['alive_cells'])
 
 
 class Grid:
